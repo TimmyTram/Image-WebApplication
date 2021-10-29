@@ -11,18 +11,18 @@ Please follow the instructions below and fill in the information requested when 
 
 |               | Information   |
 |:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+| Student Name  | Timmy Tram     |
+| Student ID    | 921102465       |
+| Student Email | ttram2@mail.sfsu.edu    |
 
 
 
 # Build/Run Instructions
 
 ## Build Instructions
-1. steps here
+1. npm install
 2. steps here
 
 ## Run Instructions
-1. steps here
+1. npm start
 2. steps here 
