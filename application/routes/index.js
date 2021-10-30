@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('login', {title: 'Login', header: 'LOGIN', css: ['default.css']});
+  res.render('login', {title: 'Login', header: 'LOGIN', css: ['form.css']});
 });
 
 router.get('/registration', (req, res, next) => {
@@ -15,7 +15,7 @@ router.get('/registration', (req, res, next) => {
 });
 
 router.get('/postimage', (req, res, next) => {
-  res.render('postimage', {title : 'Post Images', header: 'POST IMAGES', css : ['default.css']});
+  res.render('postimage', {title : 'Post Images', header: 'POST IMAGES', css : ['form.css']});
 });
 
 router.get('/viewpost', (req, res, next) => {

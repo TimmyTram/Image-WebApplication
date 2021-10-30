@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100%;
 }
 
 .wrap-container {
@@ -17,11 +18,25 @@ body {
     width: 40%;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 0.2fr);
+    grid-auto-rows: 0.2fr;
+    grid-auto-columns: 1fr;
+    grid-template-areas: 
+    "content error";
+}
+
+.form-container {
+    grid-area: content;
+}
+
 nav {
     display: flex;
     justify-content: center;
     border: 0.5rem solid #242c7e;
-    background-color: #f8e5f3;
+    background-color: #f8e5f3; 
 }
 
 nav > a, u {
@@ -42,12 +57,13 @@ nav > a:hover, a:focus {
 }
 
 header {
-    margin: 0 1rem 1rem 1rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
-    border: 0.5rem solid #242c7e;
-    border-radius: 0.5rem;
-    background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
+    /* border: 0.5rem solid #242c7e;
+    border-radius: 0.5rem; */
+    width: 100%;
+    background-color: #242c7e;
 }
 
 h1 {
@@ -81,16 +97,26 @@ form > div {
     gap: 1rem;
 }
 
+.error-container {
+    grid-area: error;
+}
+
+.error-container > div {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 2rem;
+    background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
+    border: 6px solid #242c7e;
+}
+
 .flex-container {
     margin: 1rem 1rem 1rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: left;
     gap: 2rem;
-}
-
-.file-container > input {
-    font-size: 12px;
 }
 
 .anchor-container {
@@ -172,4 +198,25 @@ input[type=checkbox] {
     color: #242c7e;
     font-weight: bold;
     transform: scale(1.2);
+}
+
+#footer {
+    display: flex;
+    justify-content: center;
+    background-color: #242c7e;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    gap: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer > a, span {
+    background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 }

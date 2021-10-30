@@ -12,13 +12,11 @@ body {
     min-height: 100%;
 }
 
-/* .wrapper {
-    margin: auto;
+.wrap-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
+    width: 40%;
+}
 
 .grid-container {
     display: grid;
@@ -62,9 +60,8 @@ header {
     margin-bottom: 1rem;
     display: flex;
     justify-content: center;
-    border: 0.5rem solid #242c7e;
-    border-radius: 0.5rem;
-    background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
+    width: 100%;
+    background-color: #242c7e;
 }
 
 h1 {
@@ -120,31 +117,6 @@ form > div {
     gap: 2rem;
 }
 
-.anchor-container {
-    border-radius: 2rem;
-    border: 3px solid #242c7e;
-    text-align: center;
-    background: linear-gradient(#fdd77b, #f4a063, #f27076);
-    color: white;
-    padding: 0.6rem;
-    max-width: fit-content;
-    font-size: 1.25rem;
-    margin: 0.2rem;
-    cursor: pointer;
-    transition: 0.7s;
-}
-
-.anchor-container > a, u {
-    color: white;
-    text-decoration: none;
-}
-
-.anchor-container:hover, .anchor-container:focus {
-    color: #242c7e;
-    font-weight: bold;
-    transform: scale(1.2);
-}
-
 form > div > label {
     display: flex;
     justify-content: center;
@@ -160,6 +132,7 @@ form > div > input, textarea {
     align-items: center;
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #b099fc;
     border: 3px solid #242c7e;
     border-radius: 0.5rem;
@@ -201,8 +174,43 @@ input[type=checkbox] {
     transform: scale(1.2);
 }
 
+#register-redirect-anchor {
+    color: white;
+    text-decoration: none;
+    border-radius: 2rem;
+    border: 3px solid #242c7e;
+    text-align: center;
+    background: linear-gradient(#fdd77b, #f4a063, #f27076);
+    padding: 0.6rem;
+    width: 6.25rem;
+    font-size: 1.25rem;
+    margin: 0.2rem;
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+#register-redirect-anchor:hover, #register-redirect-anchor:focus, #register-redirect-anchor:active {
+    color: #242c7e;
+    font-weight: bold;
+}
+
 #footer {
-    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    background-color: #242c7e;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    gap: 1rem;
     position: absolute;
     bottom: 0;
+    width: 100%;
+}
+
+#footer > a, span {
+    background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 }
