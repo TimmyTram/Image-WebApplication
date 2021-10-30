@@ -14,15 +14,14 @@ body {
 .wrap-container {
     display: flex;
     flex-direction: column;
+    width: 40%;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    grid-area: nav;
     border: 0.5rem solid #242c7e;
     background-color: #f8e5f3;
-    grid-area: nav
 }
 
 nav > a, u {
@@ -43,7 +42,7 @@ nav > a:hover, a:focus {
 }
 
 header {
-    margin: 1rem;
+    margin: 0 1rem 1rem 1rem;
     display: flex;
     justify-content: center;
     border: 0.5rem solid #242c7e;
