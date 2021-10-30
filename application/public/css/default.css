@@ -11,19 +11,9 @@ body {
     justify-content: center;
 }
 
-.grid-container {
-    display: grid;
-    /* width: 65%; */
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 0.2fr);
-    grid-auto-rows: 0.2fr;
-    grid-auto-columns: 1fr;
-    grid-template-areas: 
-    "content error";
-}
-
-.form-container {
-    grid-area: content;
+.wrap-container {
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
@@ -90,20 +80,6 @@ form > div {
     grid-auto-columns: repeat(1, 1fr);
     grid-template-areas: "field-label field-input";
     gap: 1rem;
-}
-
-.error-container {
-    grid-area: error;
-}
-
-.error-container > div {
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border-radius: 2rem;
-    background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
-    border: 6px solid #242c7e;
 }
 
 .flex-container {
