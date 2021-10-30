@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="grid-container">
+        
+        <header>
+            <h1>POST IMAGES</h1>
+        </header>
+
+        <div class="form-container">
+            <form autocomplete="off">
+                <div class="title-container">
+                    <label for="post-title">POST TITLE:</label>
+                    <input type="text" id="post-title" name="post-title" placeholder="Post Title" required/>
+                </div>
+                    
+                <div class="description-container">
+                    <label for="post-description">POST DESCRIPTION:</label>
+                    <textarea id="post-description" name="post-description" placeholder="Post Description" rows="5" cols="50" required></textarea>
+                </div>
+
+                <div class="file-container">
+                    <label for="post-file">IMAGE:</label>
+                    <input type="file" id="post-file" name="post-file" required/>
+                </div>
+                
+                <div class="flex-container">
+                    
+                    <div class="verification-container">
+                        <input type="checkbox" id="acceptable-use-policy" name="acceptable-use-policy" required/>
+                        <label>I accept to the Acceptable Use Policy for uploading images.</label>
+                    </div>
+
+                    <button id="submit-button" type="submit">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
