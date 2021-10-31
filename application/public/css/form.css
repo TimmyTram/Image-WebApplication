@@ -146,6 +146,19 @@ form > div {
     gap: 1rem;
 }
 
+/* #password-container, #confirm-password-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-columns: repeat(1, 1fr);
+    grid-template-areas: "field-label field-input eye";
+}
+
+#eye-con {
+    grid-area: eye;
+} */
+
 .error-container {
     grid-area: error;
     margin-top: 5rem;
@@ -257,7 +270,7 @@ input[type=checkbox] {
     width: 100%;
 }
 
-#footer > a, span {
+#footer > a, #footer > span {
     background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
     background-clip: text;
     -webkit-background-clip: text;
