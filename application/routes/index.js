@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'CSC 317 App', name:"Timmy Tram", css: ['home.css'], js: ['home.js'] });
+router.get('/', function(req, res, next) { // remember this was index not home; this is for testing rn
+  res.render('home', { title: 'CSC 317 App', name:"Timmy Tram", css: ['home.css'], js: ['home.js'] });
 });
 
 router.get('/login', (req, res, next) => {
