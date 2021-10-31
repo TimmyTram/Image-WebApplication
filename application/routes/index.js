@@ -7,15 +7,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
-  res.render('login', {title: 'Login', header: 'LOGIN', css: ['form.css']});
+  res.render('login', {title: 'Login', css: ['form.css']});
 });
 
 router.get('/registration', (req, res, next) => {
-  res.render('registration', {title: 'Registration', header: 'REGISTRATION', css: ['form.css'], js: ['formValidation.js']});
+  res.render('registration', {title: 'Registration', css: ['form.css'], js: ['formValidation.js']});
 });
 
 router.get('/postimage', (req, res, next) => {
-  res.render('postimage', {title : 'Post Images', header: 'POST IMAGES', css : ['form.css']});
+  res.render('postimage', {title : 'Post Images', css : ['form.css']});
 });
 
 router.get('/viewpost', (req, res, next) => {

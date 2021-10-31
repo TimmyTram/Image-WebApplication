@@ -1,49 +1,96 @@
-html {
-    min-height: 100%;
-}
-
 body {
     background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
     font-size: 20px;
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-nav {
+    margin: auto;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    grid-area: nav;
-    border: 0.5rem solid #242c7e;
-    background-color: #f8e5f3;
-    grid-area: nav
+    min-height: 100%;
 }
 
-nav > a, u {
+#navbar {
+    background: linear-gradient(90deg, #28282f, #444245, #3c3856);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+
+#navbar > nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: (1, 1fr);
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;    
+}
+
+#nav-anchor-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+}
+
+#nav-anchor-container > a, u {
     text-decoration: none;
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 2rem;
+    padding: 0.75rem;
+    border-radius: 1.5rem;
     background: linear-gradient(#fdd77b, #f4a063, #f27076);
     color: white;
     border: 3px solid #242c7e;
     transition: 0.7s;
 }
 
-nav > a:hover, a:focus {
+#nav-anchor-container > a:hover, a:focus {
     color: #242c7e;
-    font-weight: bold;
-    transform: scale(1.2);
+    transform: scale(1.1);
+}
+
+#search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#search-container > * {
+    font-size: 30px;
+}
+
+#search-bar {
+    float: left;
+    width: 80%;
+    background-color: #b099fc;
+    border: 1px solid #242c7e;
+}
+
+#search-bar:focus {
+    outline: none;
+}
+
+#search-bar::-webkit-search-cancel-button {
+    cursor: pointer;
+}
+
+#search-button {
+    float: left;
+    width: 10%;
+    background: linear-gradient(#fdd77b, #f4a063, #f27076);
+    border: 1px solid #242c7e;
+    color: white;
+    cursor: pointer;
+}
+
+#search-button:hover, #search-button:focus, #search-button:active {
+    color: #242c7e;
 }
 
 header {
-    margin: 1rem;
     display: flex;
     justify-content: center;
-    grid-area: header;
-    border: 0.5rem solid #242c7e;
-    border-radius: 0.5rem;
-    background: linear-gradient(#3c5fe1, #4d65d0, #0f1923);
-    min-width: 35%;
+    width: 100%;
+    background-color: #242c7e;
 }
 
 h1 {
@@ -79,4 +126,26 @@ section {
     border-radius: 1rem;
     gap: 0.5rem;
     padding: 5rem;
+}
+
+#footer { /* NOTE: IF THERE WAS NOTHING IN THE FLEX-CONTAINER THE FOOTER WILL MOVE UP BECAUSE BODY IS A FLEXBOX
+             MIGHT HAVE TO WRITE JAVASCRIPT TO PREVENT HEADER FROM BEING ON MIDDLE OF SCREEN
+        */
+    display: flex;
+    justify-content: center;
+    background-color: #242c7e;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    gap: 1rem;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer > a, span {
+    background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 }
