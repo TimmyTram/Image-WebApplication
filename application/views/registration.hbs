@@ -1,6 +1,6 @@
 <div class="grid-container">
     <div class="form-container">
-        <form autocomplete="off" onsubmit="return validateForm()">
+        <form id="registration-form" method="POST" action="/users/register" enctype="application/x-www-form-urlencoded" autocomplete="off">
             <div class="username-container">
                 <label for="username">USERNAME:</label>
                 <input type="text" id="username" name="username" placeholder="Username" required />
@@ -22,7 +22,7 @@
             <div class="confirm-password-container">
                 <label for="confirm-password">CONFIRM PASSWORD:</label>
                 <div id="password-input-component">
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
+                    <input type="password" id="confirm-password" name="cpassword" placeholder="Confirm Password" required />
                     <span class="eye-con"><i class="fas fa-eye"></i></span>
                 </div>
             </div>
