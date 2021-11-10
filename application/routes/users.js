@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database'); // TODO: Figure out this config/database thing
+var db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserError = require('../helpers/error/UserError');
 
@@ -50,6 +50,38 @@ router.post('/register', (req, res, next) => {
       errorPrint(err.getMessage());
       res.status(err.getStatus());
       res.redirect(err.getRedirectURL());
+    } else {
+      next(err);
+    }
+  });
+});
+
+router.post('/login', (req, res, next) => {
+  let username = req.body.username;
+  let password = req.body.password;
+
+  /**
+   * TODO: server side validation
+   */
+
+  let baseSQL = "SELECT username, password FROM users WHERE username=? AND password=?;";
+  db.execute(baseSQL, [username, password])
+  .then(([results, fields]) => {
+    if(results && results.length == 1) {
+      successPrint(`User ${username} is logged in`);
+      res.locals.logged = true;
+      res.render("home", { title: 'CSC 317 App', css: ['home.css'], js: ['home.js'] }); 
+      // ^ Needa fix my CSS or something cuz w/o this no CSS applied
+    } else {
+      throw new UserError("Invalid username and/or password!", "/login", 200);
+    }
+  })
+  .catch((err) => {
+    errorPrint("User login failed");
+    if(err instanceof UserError) {
+      errorPrint(err.getMessage());
+      res.status(err.getStatus());
+      res.redirect('/login');
     } else {
       next(err);
     }
