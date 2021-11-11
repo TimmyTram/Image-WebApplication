@@ -78,6 +78,7 @@ body {
     color: white;
     border: 3px solid #242c7e;
     transition: 0.7s;
+    cursor: pointer;
 }
 
 #nav-anchor-container > a:hover, a:focus {

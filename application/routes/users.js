@@ -86,7 +86,7 @@ router.post('/login', (req, res, next) => {
       req.session.username = username;
       req.session.userId = userId;
       res.locals.logged = true;
-      res.render("home", { title: 'CSC 317 App', css: ['home.css'], js: ['home.js'] });
+      res.redirect("/");
     } else {
       throw new UserError("Invalid username and/or password!", "/login", 200);
     }
@@ -99,6 +99,19 @@ router.post('/login', (req, res, next) => {
       res.redirect('/login');
     } else {
       next(err);
+    }
+  });
+});
+
+router.post('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if(err) {
+      errorPrint('session could not be destroyed.');
+      next(err);
+    } else {
+      successPrint('session was destroyed.');
+      res.clearCookie('csid');
+      res.json({status: "OK", message: "user is logged out"});
     }
   });
 });

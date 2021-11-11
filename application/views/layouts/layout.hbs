@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
@@ -11,11 +12,28 @@
     {{#each js}}
     <script defer type="text/javascript" src="/public/js/{{this}}"></script>
     {{/each}}
-  </head>
-  <body>
+</head>
+
+<body>
     {{> banner}}
     {{> navbar}}
     {{{body}}}
     {{> footer}}
-  </body>
+
+    {{#if logged}}
+    <script>
+        let element = document.getElementById('logout-button');
+        element.onclick = (event) => {
+            fetch('/users/logout', {
+                method: "POST"
+            })
+            .then((data) => {
+                location.replace('/');
+            })
+        }
+    </script>
+    {{/if}}
+
+</body>
+
 </html>

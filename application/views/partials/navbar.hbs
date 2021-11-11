@@ -7,9 +7,9 @@
         <div id="nav-anchor-container">
             <a href="/">HOME</a>
             {{#if logged}}
-                <a href="/users/logout">LOG OUT</a>
+                <a id="logout-button">LOG OUT</a>
             {{else}}
-                <a href="/login">LOGIN</a>
+                <a id="login-button" href="/login">LOGIN</a>
             {{/if}}
 
             <a href="/postimage">POST IMAGE</a>
