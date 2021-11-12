@@ -280,3 +280,33 @@ input[type=checkbox] {
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
 }
+
+#flash-message {
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, 0);
+}
+
+#flash-message > div {
+    text-align: center;
+    padding: 1rem;
+    border: 3px solid #242c7e;
+}
+
+#flash-message > div > span {
+    background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+#flash-success {
+    background-color: #006b00;
+}
+
+#flash-error {
+    background-color: #990000;
+}

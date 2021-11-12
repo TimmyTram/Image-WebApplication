@@ -6,11 +6,15 @@
         </div>
         <div id="nav-anchor-container">
             <a href="/">HOME</a>
+            
+            {{!-- {{log this}} --}}
+
             {{#if logged}}
-                <a id="logout-button">LOG OUT</a>
+            <a id="logout-button">LOGOUT</a>
             {{else}}
-                <a id="login-button" href="/login">LOGIN</a>
+            <a href="/login" id="login-button">LOGIN</a>
             {{/if}}
+
 
             <a href="/postimage">POST IMAGE</a>
             <a href="/viewpost">VIEW POSTS</a>
