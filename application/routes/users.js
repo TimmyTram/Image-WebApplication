@@ -4,17 +4,15 @@ const db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserError = require('../helpers/error/UserError');
 const bcrypt = require('bcrypt');
+const {registerValidator, loginValidator} = require('../middleware/validation');
 
+router.use("/register", registerValidator);
 router.post('/register', (req, res, next) => {
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
   let cpassword = req.body.cpassword;
 
-  /**
-   * TODO: server side validation
-   */
-  
   db.execute("SELECT * FROM users WHERE username=?", [username])
   .then(([results, fields]) => {
     if(results && results.length == 0) {
@@ -56,13 +54,10 @@ router.post('/register', (req, res, next) => {
   });
 });
 
+router.use('/login', loginValidator);
 router.post('/login', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
-
-  /**
-   * TODO: server side validation
-   */
 
   let baseSQL = "SELECT id, username, password FROM users WHERE username=?;";
   let userId;

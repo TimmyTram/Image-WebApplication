@@ -153,7 +153,7 @@ function validateUsername(event) {
     let isValidUsername = false;
     // hopefully these regex patterns actually work
     const pattern_start = /^[a-zA-Z]/; // regex pattern for 1st char to be an alphabetical character
-    const pattern_alphanumeric = /[a-zA-Z0-9]{3,}/; // regex pattern for first 3 characters or more to be alphanumeric (not using \w because underscores)
+    const pattern_alphanumeric = /^[a-zA-Z0-9]{3,}$/; // regex pattern for first 3 characters or more to be alphanumeric (not using \w because underscores)
     const req_start = "Username Begins with a character";
     const req_alphanumeric = "Username has at least 3 alphanumeric characters";
 
