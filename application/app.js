@@ -7,9 +7,9 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-var sessions = require('express-session');
-var mysqlSession = require('express-mysql-session')(sessions);
-var flash = require('express-flash');
+const sessions = require('express-session');
+const mysqlSession = require('express-mysql-session')(sessions);
+const flash = require('express-flash');
 const { requestPrint } = require("./helpers/debug/debugprinters");
 
 const app = express();

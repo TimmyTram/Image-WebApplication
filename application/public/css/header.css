@@ -50,7 +50,8 @@
     float: left;
     width: 80%;
     background-color: #b099fc;
-    border: 1px solid #242c7e;
+    border: 3px solid #242c7e;
+    border-radius: 1.5rem 0rem 0rem 1.5rem;
 }
 
 #search-bar:focus {
@@ -65,9 +66,12 @@
     float: left;
     width: 10%;
     background: linear-gradient(#fdd77b, #f4a063, #f27076);
-    border: 1px solid #242c7e;
+    border: 3px solid #242c7e;
+    border-left: 0;
+    border-radius: 0rem 1.5rem 1.5rem 0rem;
     color: white;
     cursor: pointer;
+    transition: 0.7s;
 }
 
 #search-button:hover, #search-button:focus, #search-button:active {

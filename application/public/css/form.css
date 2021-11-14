@@ -120,6 +120,10 @@ form > div > input::placeholder, form > div > div > input::placeholder {
     gap: 0.5rem;
 }
 
+.tos-container > i {
+    color: #0645AD;
+}
+
 input[type=checkbox] {
     width: 1rem;
     height: 1rem;
@@ -136,7 +140,7 @@ input[type=checkbox] {
     background: linear-gradient(#fdd77b, #f4a063, #f27076);
     color: white;
     padding: 0.6rem;
-    width: 6.25rem;
+    width: 8rem;
     font-size: 1.25rem;
     margin: 0.2rem;
     cursor: pointer;
@@ -166,4 +170,5 @@ input[type=checkbox] {
 #register-redirect-anchor:hover, #register-redirect-anchor:focus, #register-redirect-anchor:active {
     color: #242c7e;
     font-weight: bold;
+    transform: scale(1.2);
 }

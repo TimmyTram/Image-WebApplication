@@ -1,7 +1,7 @@
 <div id="flash-message">
     {{#if messages.error }}
-    <div id="flash-error"><span>{{messages.error}}</span></div>
+    <div id="flash-error"><i class="fas fa-exclamation-triangle"></i> <span>{{messages.error}}</span> <i class="fas fa-exclamation-triangle"></i></div>
     {{else}}
-    <div id="flash-success"><span>{{messages.success}}</span></div>
+    <div id="flash-success"><i class="fas fa-check-circle"></i> <span>{{messages.success}}</span> <i class="fas fa-check-circle"></i></div>
     {{/if}}
 </div>

@@ -11,7 +11,7 @@
     border: 3px solid #242c7e;
 }
 
-#flash-message > div > span {
+#flash-message > div > span, #flash-message > div > i {
     background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
     background-clip: text;
     -webkit-background-clip: text;

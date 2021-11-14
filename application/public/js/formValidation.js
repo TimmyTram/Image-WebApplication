@@ -32,35 +32,11 @@ confirmPasswordElement.addEventListener('blur', () => {hideDisplay(confirmPasswo
 const formSubmitButton = document.getElementById('registration-form');
 formSubmitButton.addEventListener('submit', (event) => {validateForm(event)});
 
-let eyecon = document.querySelectorAll('.eye-con');
-eyecon.forEach((item) => {
-    var itemClass = item;
-    item.addEventListener('click', () => {
-        togglePassword(itemClass, itemClass.parentNode);
-    });
-});
-
-
-/**
- * Toggles password input from password to text and font awesome eye to slash and non-slash eye.
- * @param {*} eye a span tag that contains a child <i class="fas {some font awesome icon here}">.
- * @param {*} container a div that is the parent of eye.
- */
-function togglePassword(eye, container) { 
-    const passwordInput = container.children[0];
-    const fontAwesomeEye = eye.children[0];
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    const eyeType =  fontAwesomeEye.getAttribute('class') === 'fas fa-eye' ? 'fas fa-eye-slash' : 'fas fa-eye';
-    passwordInput.setAttribute('type', type);
-    fontAwesomeEye.className = eyeType;
-}
-
 /**
  * validates form by checking global booleans
  * @returns true or false depending if all criteria has been met.
  */
 function validateForm(event) {
-    //event.preventDefault();
     let valid = true;
     if(!valid_username) {
         usernameElement.focus();
@@ -75,12 +51,6 @@ function validateForm(event) {
         confirmPasswordElement.focus();
         valid = false;
     }
-
-    // temporary if statement to just check that form has been received properly
-    // if(valid) {
-    //     alert("[This is a test] : SUBMISSION RECEIVED");
-    // }
-
     return valid;
 }
 
@@ -173,7 +143,6 @@ function validateUsername(event) {
     if(isValidStart && isAlphanumeric) {
         usernameElement.style.outlineColor = "#34b233";
         isValidUsername = true;
-        //console.log("valid username");
     }
     return isValidUsername;
 }
@@ -191,7 +160,6 @@ function validateEmail(event) {
     const pattern_email = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
     
     if(pattern_email.test(email)) {
-        //console.log("valid email");
         emailElement.style.outlineColor = "#34b233";
         isValid = true;
     } 
@@ -245,7 +213,6 @@ function validatePassword(event) {
         isValidPassword = true;
         passwordElement.style.outlineColor = "#34b233";
         passwordToMatch = password;
-        //console.log(passwordToMatch);
     }
     return isValidPassword;
 }
@@ -260,7 +227,6 @@ function validateConfirmPassword(event) {
     const req_text = "Passwords match!";
     if(confirmPassword === passwordToMatch) {
         isValid = true;
-        //console.log("passwords match!");
     }
     displayRequirements("confirm-password-error", confirmPasswordErrorContainer, {[req_text] : isValid});
     return isValid;
