@@ -6,6 +6,7 @@ var isLoggedIn = require('../middleware/routeprotecter').userIsLoggedIn;
 router.get('/', function(req, res, next) {
   //res.render('home', { title: 'CSC 317 App', name:"Timmy Tram", css: ['home.css'], js: ['home.js'] }); <= remains of old home
   res.render('index', {title: 'CSC 317 App', css: ['form.css']});
+  console.log(res.locals);
 });
 
 router.get('/login', (req, res, next) => {

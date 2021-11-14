@@ -1,12 +1,13 @@
 const checkUsername = (username) => {
     /**
-     * REGEX EXPLANATION:
+     * Regex given in video was letting _break as a username get through,
+     * wrote my own regex to prevent that
      * ^ --> start of string
-     * \D --> anything not a digit
-     * \w --> anything that is alphanumeric
-     * {3,} --> 3 or more characters
+     * [a-zA-Z] --> set of chars abc...xyz and ABC...XYZ
+     * [a-zA-Z0-9] --> set of alphanumeric characters
+     * {3,} --> 3 or more occurences
      */
-    let usernameChecker = /^\D\w{3,}$/;
+    let usernameChecker = /^[a-zA-Z][a-zA-Z0-9]{3,}$/
     return usernameChecker.test(username);
 }
 
@@ -33,6 +34,7 @@ const checkEmail = (email) => {
 const registerValidator = (req, res, next) => {
     let username = req.body.username;
     let password = req.body.password;
+    let cpassword = req.body.cpassword;
     let email = req.body.email;
 
     if(!checkUsername(username)) {
@@ -47,6 +49,11 @@ const registerValidator = (req, res, next) => {
         });
     } else if(!checkEmail(email)) {
         req.flash('error', 'Invalid Email!');
+        req.session.save(err => {
+            res.redirect('/registration');
+        });
+    } else if(password != cpassword) { // gotta check passwords or else user can accidentially create account with password mismatch
+        req.flash('error', 'Invalid: Passwords do not match!');
         req.session.save(err => {
             res.redirect('/registration');
         });

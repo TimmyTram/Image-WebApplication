@@ -7,9 +7,9 @@ const logger = require("morgan");
 const handlebars = require("express-handlebars");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const sessions = require('express-session');
-const mysqlSession = require('express-mysql-session')(sessions);
-const flash = require('express-flash');
+var sessions = require('express-session');
+var mysqlSession = require('express-mysql-session')(sessions);
+var flash = require('express-flash');
 const { requestPrint } = require("./helpers/debug/debugprinters");
 
 const app = express();
@@ -29,7 +29,12 @@ app.engine(
   })
 );
 
-var mysqlSessionStore = new mysqlSession({/* Using default options */}, require('./config/database'));
+var mysqlSessionStore = new mysqlSession(
+  {
+    /* using default options */
+  }, 
+  require('./config/database')
+);
 
 app.use(sessions({
   key: "csid",
@@ -69,7 +74,6 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
-
 
 /**
  * Catch all route, if we get to here then the 

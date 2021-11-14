@@ -78,7 +78,11 @@ router.post('/login', (req, res, next) => {
       req.session.userId = userId;
       res.locals.logged = true;
       req.flash('success', 'You have been successfully Logged in!');
-      res.redirect('/');
+      
+      req.session.save((err) => {
+        res.redirect('/'); // <= why does this work?
+      });
+      //res.redirect('/'); <= Why does this not work the way I want it to
     } else {
       throw new UserError("Invalid username and/or password!", "/login", 200);
     }
