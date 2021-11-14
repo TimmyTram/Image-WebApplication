@@ -36,7 +36,10 @@ router.post('/register', (req, res, next) => {
     if(results && results.affectedRows) {
       successPrint("User.js --> User was created!");
       req.flash('success', 'User account has been made!');
-      res.redirect('/login');
+      req.session.save(err => {
+        res.redirect('/login');
+      });
+      //res.redirect('/login');
     } else {
       throw new UserError("Server Error, user could not be created", "/registration", 500);
     }
@@ -80,9 +83,9 @@ router.post('/login', (req, res, next) => {
       req.flash('success', 'You have been successfully Logged in!');
       
       req.session.save((err) => {
-        res.redirect('/'); // <= why does this work?
+        res.redirect('/'); // <= Gotta force save before redirect so things display properly.
       });
-      //res.redirect('/'); <= Why does this not work the way I want it to
+      //res.redirect('/'); <= This does not work for me, flash and logout does not update because things aren't being saved
     } else {
       throw new UserError("Invalid username and/or password!", "/login", 200);
     }
