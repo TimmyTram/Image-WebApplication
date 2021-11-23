@@ -82,4 +82,37 @@ const loginValidator = (req, res, next) => {
     }
 }
 
-module.exports = {registerValidator, loginValidator};
+const postValidator = (req, res, next) => {
+    let fileUploaded = req.file.path;
+    let fileAsThumbnail = `thumbnail-${req.file.filename}`;
+    let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
+    let title = req.body.title;
+    let description = req.body.description;
+    let fk_userId = req.session.userId;
+    
+    if(fileUploaded.length == 0) {
+       req.flash('error', 'No File was Uploaded!');
+       req.session.save(err => {
+           res.redirect('/postimage');
+       }); 
+    } else if(title.length == 0) {
+        req.flash('error', 'No Title was given!');
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
+    } else if(description.length == 0) {
+        req.flash('error', 'No Description was given!');
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
+    } else if(typeof fk_userId === 'undefined') {
+        req.flash('error', 'User does not exist!');
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
+    } else {
+        next();
+    }
+}
+
+module.exports = {registerValidator, loginValidator, postValidator};
