@@ -11,6 +11,7 @@
 }
 
 #footer > a, #footer > span {
+    text-decoration: none;
     background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
     background-clip: text;
     -webkit-background-clip: text;

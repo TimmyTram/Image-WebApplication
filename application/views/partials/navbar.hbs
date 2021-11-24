@@ -7,17 +7,14 @@
         <div id="nav-anchor-container">
             <a href="/"><i class="fas fa-home"></i> HOME</a>
             
-            {{!-- {{log this}} --}}
-
             {{#if logged}}
             <a id="logout-button"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
             {{else}}
             <a href="/login" id="login-button"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
             {{/if}}
-
-
+            
             <a href="/postimage"><i class="fas fa-upload"></i> POST IMAGE</a>
-            <a href="/viewpost"><i class="fas fa-eye"></i> VIEW POSTS</a>
+            {{!-- <a href="/viewpost"><i class="fas fa-eye"></i> VIEW POSTS</a> --}}
         </div>
     </nav>
 </div>

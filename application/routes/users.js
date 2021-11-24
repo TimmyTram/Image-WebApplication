@@ -39,7 +39,6 @@ router.post('/register', (req, res, next) => {
       req.session.save(err => {
         res.redirect('/login');
       });
-      //res.redirect('/login');
     } else {
       throw new UserError("Server Error, user could not be created", "/registration", 500);
     }

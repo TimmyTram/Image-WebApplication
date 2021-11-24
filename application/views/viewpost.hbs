@@ -1,25 +1,31 @@
-<div class="container">
-    <div id="img-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Orange_circle_100%25.svg/250px-Orange_circle_100%25.svg.png" alt="Image Could Not Be Displayed."/>
-    </div>
-    
-    <div class="grid-container">
-        <div id="placeholder-for-now">
-            <div id="placeholder-for-now-banner">
-                <span id="placeholder-for-now-span">PLACEHOLDER AREA FOR NOW</span>
-            </div>
+<div class="wrapper">
+    <div class="container">
+        <div id="img-container">
+            <img src="/{{currentPost.photopath}}" alt="Image Could Not Be Displayed."/>
         </div>
+        
 
-        <div id="comment-section-container">
-            <div id="view-comment-container">
-                <div id="view-comment-banner">
-                    <span id="view-comment-span">COMMENTS <i class="fas fa-comments"></i></span>
-                </div>
+        <div class="grid-container">
+            <div id="info-message-grid">
+                <header id="image-post-title">
+                    <span id="image-post-title-text">{{currentPost.title}}</span>
+                </header>
+                <div id="image-post-author" class="info-tags">{{currentPost.username}}</div>
+                <div id="image-post-date" class="info-tags">{{currentPost.created}}</div>
+                <div id="image-post-description" class="info-tags">{{currentPost.description}}</div>
             </div>
 
-            <div id="write-comment-container">
-                <textarea name="write-comment-area" id="write-comment-area" cols="60" rows="5"></textarea>
-                <button type="submit" id="submit-button"><i class="fa fa-comment"></i></button>
+            <div id="comment-section-container">
+                <div id="view-comment-container">
+                    <div id="view-comment-banner">
+                        <span id="view-comment-span">COMMENTS <i class="fas fa-comments"></i></span>
+                    </div>
+                </div>
+
+                <div id="write-comment-container">
+                    <textarea name="write-comment-area" id="write-comment-area" cols="60" rows="5"></textarea>
+                    <button type="submit" id="submit-button"><i class="fa fa-comment"></i></button>
+                </div>
             </div>
         </div>
     </div>
