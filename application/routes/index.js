@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/routeprotecter').userIsLoggedIn;
+var getRecentPosts = require('../middleware/postsmiddleware').getRecentPosts;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  //res.render('home', { title: 'CSC 317 App', name:"Timmy Tram", css: ['home.css'], js: ['home.js'] }); <= remains of old home
-  res.render('index', {title: 'CSC 317 App', css: ['form.css']});
-  console.log(res.locals);
+router.get('/', getRecentPosts, function(req, res, next) {
+  res.render('index', {title: 'CSC 317 App', css: ['form.css', 'index.css', 'card.css']});
 });
 
 router.get('/login', (req, res, next) => {

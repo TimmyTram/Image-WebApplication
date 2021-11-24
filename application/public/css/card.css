@@ -1,0 +1,47 @@
+.card {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 160px 160px;
+    border-width: 6px;
+    border-style: solid;
+    border-image: linear-gradient(to left,#fdd77b, #f4a063, #f27076) 1;
+}
+
+div[class=card] > img {
+    height: 100%;
+    width: 100%;
+}
+
+.card-body {
+    background-color: #242c7e;
+}
+
+.card-text, .card-title {
+    margin-left: .5rem;
+    background: -webkit-linear-gradient(#fdd77b, #f4a063, #f27076);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    
+    width: 360px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div[class=card-body] > a[class=anchor-buttons] {
+    margin-left: .5rem;
+    color: white;
+    background: linear-gradient(#fdd77b, #f4a063, #f27076);
+    text-decoration: none;
+    transition: 0.7s;
+    padding: 0.5rem;
+    border: 3px solid #f27076;
+    border-radius: 1.5rem;
+}
+
+div[class=card-body] > a[class=anchor-buttons]:hover, a[class=anchor-buttons]:focus {
+    color: #242c7e;
+}
