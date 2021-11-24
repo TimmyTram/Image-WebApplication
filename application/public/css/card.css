@@ -13,6 +13,8 @@ div[class=card] > img {
 }
 
 .card-body {
+    border-top: 6px solid;
+    border-image: linear-gradient(to left,#fdd77b, #f4a063, #f27076) 1;
     background-color: #242c7e;
 }
 
