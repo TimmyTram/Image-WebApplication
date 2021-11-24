@@ -11,7 +11,7 @@ body {
 }
 
 .wrapper {
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ body {
 
 .container {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     border: 6px solid;
     border-image: linear-gradient(to left,#fdd77b, #f4a063, #f27076) 1;
@@ -29,7 +29,7 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 20vh 1fr;
+    grid-template-rows: repeat(2, 1fr);
     grid-auto-rows: 1fr;
     grid-auto-columns: 1fr;
 
@@ -37,26 +37,38 @@ body {
     border-image: linear-gradient(to top,#fdd77b, #f4a063, #f27076) 1;
 }
 
+#img-container {
+    background-color: black;
+}
+
 #img-container > img {
-    width: 100%;
-    height: 100%;
+    display: block;
+    margin: 0 auto;
+    height: 70vh;
+    width: auto;
 }
 
 #comment-section-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 1.5fr minmax(10%, 200px);
+    grid-template-rows: repeat(3, 1fr);
     grid-auto-rows: 1fr;
     grid-auto-columns: 1fr;
     border-top: 6px solid;
     border-image: linear-gradient(to left,#fdd77b, #f4a063, #f27076) 1;
+    grid-template-areas:
+    "view"
+    "view"
+    "write";
 }
 
 #write-comment-container {
     display: flex;
+    grid-area: write;
 }
 
 #write-comment-container > textarea {
+    flex: 1;
     font-size: 1.25rem;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #b099fc;
@@ -78,6 +90,10 @@ body {
 
 #write-comment-container > button:hover, button:focus {
     color: #242c7e;
+}
+
+#view-comment-container {
+    grid-area: view;
 }
 
 #view-comment-banner {
@@ -149,5 +165,8 @@ body {
 }
 
 #image-post-description {
+    max-height: 120px;
     grid-area: description;
+    word-wrap: break-word;
+    overflow-y: auto;
 }

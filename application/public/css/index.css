@@ -1,3 +1,8 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 #main-content {
     display: grid;
     padding-top: .35em;
@@ -7,5 +12,4 @@
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 1fr;
     grid-auto-columns: repeat(4, 1fr);
-    width: 80%;
 }

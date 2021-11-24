@@ -19,8 +19,6 @@
 </head>
 
 <body>
-    {{!-- {{log this}} --}}
-
     {{> header}}
     
     {{#if (emptyObject messages)}}
@@ -28,6 +26,7 @@
     {{/if}}
 
     {{{body}}}
+    
     {{> footer}}
 
     {{#if logged}}
