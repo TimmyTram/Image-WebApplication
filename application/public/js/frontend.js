@@ -6,7 +6,6 @@ eyecon.forEach((item) => {
     });
 });
 
-
 /**
  * Toggles password input from password to text and font awesome eye to slash and non-slash eye.
  * @param {*} eye a span tag that contains a child <i class="fas {some font awesome icon here}">.
@@ -21,21 +20,90 @@ function togglePassword(eye, container) {
     fontAwesomeEye.className = eyeType;
 }
 
-function setFlashMessageFadeOut() {
+function setFlashMessageFadeOut(flashMessageElement) {
     setTimeout(() => {
         let currentOpacity = 1.0;
         let timer = setInterval(() => {
             if(currentOpacity < 0.05) {
                 clearInterval(timer);
-                flashElement.remove();
+                flashMessageElement.remove();
             }
             currentOpacity -= 0.05;
-            flashElement.style.opacity = currentOpacity;
+            flashMessageElement.style.opacity = currentOpacity;
         }, 50);
     }, 4000);
 }
 
+function addFlashFromFrontEnd(message) {
+    let flashMessageDiv = document.createElement('div');
+    let innerFlashDiv = document.createElement('div');
+    let innerI = document.createElement('i');
+    let innerSpan = document.createElement('span');
+    let outerI = document.createElement('i');
+    outerI.setAttribute('class', 'fas fa-check-circle');
+    let innerTextNode = document.createTextNode(" " + message + " ");
+    innerSpan.appendChild(innerTextNode);
+    innerSpan.appendChild(outerI);
+    innerI.appendChild(innerSpan);
+    innerFlashDiv.appendChild(innerI);
+    flashMessageDiv.appendChild(innerFlashDiv);
+    flashMessageDiv.setAttribute('id', 'flash-message');
+    innerFlashDiv.setAttribute('id', 'flash-success');
+    innerI.setAttribute('class', 'fas fa-check-circle');
+    document.getElementsByTagName('body')[0].appendChild(flashMessageDiv);
+    setFlashMessageFadeOut(flashMessageDiv);
+}
+
+function createCard(postData) {
+    return `
+    <div id="post-${postData.id}" class="card">
+        <img src=${postData.thumbnail} alt="Missing Image.">
+        <div class="card-body">
+            <p class="card-title">${postData.title}</p>
+            <p class="card-text">${postData.description}</p>
+            <a href="/post/${postData.id}" class="anchor-buttons"><i class="fas fa-info-circle"></i> Post Details</a>
+        </div>
+    </div>
+        `;
+}
+
+function executeSearch() {
+    let searchTerm = document.getElementById('search-bar').value;
+    if(!searchTerm) {
+        location.replace('/');
+        return;
+    }
+    let mainContent = document.getElementById('main-content');
+    let searchUrl = `/posts/search?search=${searchTerm}`;
+    fetch(searchUrl)
+    .then((data) => {
+        return data.json();
+    })
+    .then((data_json) => {
+        let newMainContentHTML = '';
+        let counter = 0;
+        data_json.results.forEach((row) => {
+            if(counter < 8) {
+                newMainContentHTML += createCard(row);
+            }
+            counter++;
+        });
+        
+        mainContent.innerHTML = newMainContentHTML;
+
+        if(data_json.message) {
+            addFlashFromFrontEnd(data_json.message);
+        }
+    })
+    .catch((err) => console.log(err));
+}
+
 let flashElement = document.getElementById('flash-message');
 if(flashElement) {
-    setFlashMessageFadeOut();
+    setFlashMessageFadeOut(flashElement);
+}
+
+let searchButton = document.getElementById('search-button');
+if(searchButton) {
+    searchButton.onclick = executeSearch;
 }

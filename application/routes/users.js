@@ -49,7 +49,10 @@ router.post('/register', (req, res, next) => {
       errorPrint(err.getMessage());
       req.flash('error', err.getMessage());
       res.status(err.getStatus());
-      res.redirect(err.getRedirectURL());
+      let url = err.getRedirectURL();
+      req.session.save(err => {
+        res.redirect(url);
+      });
     } else {
       next(err);
     }

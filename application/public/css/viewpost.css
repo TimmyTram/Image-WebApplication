@@ -34,7 +34,7 @@ body {
     grid-auto-columns: 1fr;
 
     border-left: 6px solid;
-    border-image: linear-gradient(to top,#fdd77b, #f4a063, #f27076) 1;
+    border-image: linear-gradient(to top,#f4a063, #f27076, #f4a063) 1;
 }
 
 #img-container {
