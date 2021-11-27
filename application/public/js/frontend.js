@@ -161,7 +161,8 @@ function buildPaginator(state) {
     
     nextButton.onclick = (event) => {
         if(event.target.id === 'next-button') {
-            if(state.page < state.content.length - 1) {
+            if(state.page < state.content.length - 1 && state.content[state.content.length - 1] !== "") {
+                console.log(state.content);
                 mainContent.innerHTML = state.content[++state.page];
                 specificPageNumber.innerText = state.page + 1;
             }
