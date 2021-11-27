@@ -149,7 +149,6 @@ input[type=checkbox] {
 
 #submit-button:hover, #submit-button:focus, #submit-button:active {
     color: #242c7e;
-    transform: scale(1.2);
 }
 
 #register-redirect-anchor {
@@ -170,5 +169,4 @@ input[type=checkbox] {
 #register-redirect-anchor:hover, #register-redirect-anchor:focus, #register-redirect-anchor:active {
     color: #242c7e;
     font-weight: bold;
-    transform: scale(1.2);
 }

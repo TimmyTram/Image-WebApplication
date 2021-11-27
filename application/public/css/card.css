@@ -44,6 +44,7 @@ div[class=card-body] > a[class=anchor-buttons] {
     border-radius: 1.5rem;
 }
 
-div[class=card-body] > a[class=anchor-buttons]:hover, a[class=anchor-buttons]:focus {
+div[class=card-body] > a[class=anchor-buttons]:hover, div[class=card-body] > a[class=anchor-buttons]:focus {
     color: #242c7e;
+    outline: none;
 }

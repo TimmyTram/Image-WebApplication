@@ -1,7 +1,7 @@
 #navbar {
     background: linear-gradient(90deg, #28282f, #444245, #3c3856);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     width: 100%;
 }
 
@@ -20,7 +20,7 @@
     gap: 3rem;
 }
 
-#nav-anchor-container > a, u {
+#nav-anchor-container > a, #nav-anchor-container > u {
     text-decoration: none;
     padding: 0.75rem;
     border-radius: 1.5rem;
@@ -29,11 +29,11 @@
     border: 3px solid #242c7e;
     transition: 0.7s;
     cursor: pointer;
+    outline: none;
 }
 
-#nav-anchor-container > a:hover, a:focus {
+#nav-anchor-container > a:hover, #nav-anchor-container > a:focus {
     color: #242c7e;
-    transform: scale(1.1);
 }
 
 #search-container {
@@ -76,6 +76,7 @@
 
 #search-button:hover, #search-button:focus, #search-button:active {
     color: #242c7e;
+    outline: none;
 }
 
 header {
