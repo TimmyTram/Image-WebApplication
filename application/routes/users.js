@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/database');
+const UserModel = require('../models/Users');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const UserError = require('../helpers/error/UserError');
-const bcrypt = require('bcrypt');
 const {registerValidator, loginValidator} = require('../middleware/validation');
 
 router.use("/register", registerValidator);
@@ -11,36 +11,31 @@ router.post('/register', (req, res, next) => {
   let username = req.body.username;
   let email = req.body.email;
   let password = req.body.password;
-  let cpassword = req.body.cpassword;
-
-  db.execute("SELECT * FROM users WHERE username=?", [username])
-  .then(([results, fields]) => {
-    if(results && results.length == 0) {
-      return db.execute("SELECT * FROM users WHERE email=?", [email]);
-    } else {
+  
+  UserModel.usernameExists(username)
+  .then((usernameDoesExist) => {
+    if(usernameDoesExist) {
       throw new UserError("Registration Failed: Username already exists", "/registration", 200);
-    }
-  })
-  .then(([results, fields]) => {
-    if(results && results.length == 0) {
-      return bcrypt.hash(password, 15);
     } else {
-      throw new UserError("Registration Failed: Email already exists", "/registration", 200);
+      return UserModel.emailExists(email);
     }
   })
-  .then((hashedPassword) => {
-    let baseSQL = "INSERT INTO users (username, email, password, created) VALUES (?, ?, ?, now());";
-    return db.execute(baseSQL, [username, email, hashedPassword]);
+  .then((emailDoesExist) => {
+    if(emailDoesExist) {
+      throw new UserError("Registration Failed: Email already exists", "/registration", 200);
+    } else {
+      return UserModel.create(username, password, email);
+    }
   })
-  .then(([results, fields]) => {
-    if(results && results.affectedRows) {
+  .then((createdUserId) => {
+    if(createdUserId < 0) {
+      throw new UserError("Server Error, user could not be created", "/registration", 500);
+    } else {
       successPrint("User.js --> User was created!");
       req.flash('success', 'User account has been made!');
       req.session.save(err => {
         res.redirect('/login');
       });
-    } else {
-      throw new UserError("Server Error, user could not be created", "/registration", 500);
     }
   })
   .catch((err) => {
@@ -64,30 +59,17 @@ router.post('/login', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
 
-  let baseSQL = "SELECT id, username, password FROM users WHERE username=?;";
-  let userId;
-  db.execute(baseSQL, [username])
-  .then(([results, fields]) => {
-    if(results && results.length == 1) {
-      let hashedPassword = results[0].password;
-      userId = results[0].id;
-      return bcrypt.compare(password, hashedPassword); 
-    } else {
-      throw new UserError("invalid username and/or password!", "/login", 200);
-    }
-  })
-  .then((passwordsMatched) => {
-    if(passwordsMatched) {
+  UserModel.authenticate(username, password)  
+  .then((loggedUserId) => {
+    if(loggedUserId > 0) {
       successPrint(`User ${username} is logged in`);
       req.session.username = username;
-      req.session.userId = userId;
+      req.session.userId = loggedUserId;
       res.locals.logged = true;
       req.flash('success', 'You have been successfully Logged in!');
-      
       req.session.save((err) => {
-        res.redirect('/'); // <= Gotta force save before redirect so things display properly.
+        res.redirect('/');
       });
-      //res.redirect('/'); <= This does not work for me, flash and logout does not update because things aren't being saved
     } else {
       throw new UserError("Invalid username and/or password!", "/login", 200);
     }
