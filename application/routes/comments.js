@@ -24,7 +24,8 @@ router.post('/create', (req, res, next) => {
                     status: "success",
                     message: "Comment created.",
                     comment : comment,
-                    username : username
+                    username : username,
+                    commentId: wasSuccessful
                 });
             } else {
                 errorPrint("Comment was not saved.");

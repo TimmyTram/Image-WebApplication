@@ -43,4 +43,47 @@
         let imagePostDate = document.getElementById('image-post-date');
         imagePostDate.textContent = new Date(imagePostDate.textContent).toLocaleString();
     });
+
+    function addMessage(data) {
+        let template = document.createElement('template');
+        template.innerHTML = `
+        <div id="message-${data.commentId}">
+            <strong class="author-text">@${data.username}</strong>
+            <span class="date-posted">${new Date().toLocaleString()}</span>
+            <div class="comment-text">${data.comment}</div>
+        </div>
+        `;
+        document.getElementById('messages').firstElementChild.before(template.content.firstElementChild);
+    }
+
+    document.getElementById('submit-button').onclick = (event) => {
+        let commentText = document.getElementById('write-comment-area').value;
+        let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+        if(!commentText) {
+            return;
+        }
+        
+        let fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify({
+                comment: commentText,
+                postId : postId
+            })
+        }
+
+        fetch('/comments/create', fetchOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.code == 1) {
+                addMessage(data);
+            } else {
+                addFlashFromFrontEnd(data.message);
+            }
+        })
+        .catch((err) => console.log(err));
+    };
+
 </script>

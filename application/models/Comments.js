@@ -2,7 +2,7 @@ const db = require('../config/database');
 const CommentModel = {};
 
 CommentModel.create = (userId, postId, comment) => {
-    let baseSQL = `INSERT INTO comments (comment, fk_postId, fk_authorId) VALUES (?, ?, ?);`;
+    let baseSQL = `INSERT INTO comments (comment, fk_postId, fk_authorId, created) VALUES (?, ?, ?, now());`;
     return db.query(baseSQL, [comment, postId, userId])
     .then(([results, fields]) => {
         if(results && results.affectedRows) {
@@ -11,7 +11,7 @@ CommentModel.create = (userId, postId, comment) => {
             return Promise.resolve(-1);
         }
     })
-    .catch((err) = Promise.reject(err));
+    .catch((err) => Promise.reject(err));
 }
 
 CommentModel.getCommentsForPost = (postId) => {
