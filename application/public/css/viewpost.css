@@ -24,6 +24,7 @@ body {
     grid-template-rows: 1fr;
     border: 6px solid;
     border-image: linear-gradient(to left,#fdd77b, #f4a063, #f27076) 1;
+    width: 100%;
 }
 
 .grid-container {
@@ -117,7 +118,7 @@ body {
 
 #messages {
     display: flex;
-    flex-flow: column-reverse nowrap;
+    flex-flow: column nowrap;
     max-height: 18vh;
     overflow-y: auto;
     scroll-behavior: smooth;
