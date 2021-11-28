@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
 const sharp = require('sharp');
 const multer = require('multer');
 const crypto = require('crypto');
 const PostError = require('../helpers/error/PostError');
 const { postValidator } = require('../middleware/validation');
-const { route } = require('.');
+const PostModel = require('../models/Posts');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -35,11 +34,10 @@ router.post('/createPost', (req, res, next) => {
     .resize(200)
     .toFile(destinationOfThumbnail)
     .then(() => {
-        let baseSQL = `INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userId) VALUE (?, ?, ?, ?, now(), ?);`;
-        return db.execute(baseSQL, [title, description, fileUploaded, destinationOfThumbnail, fk_userId]);
+        return PostModel.create(title, description, fileUploaded, destinationOfThumbnail, fk_userId);
     })
-    .then(([results, fields]) => {
-        if(results && results.affectedRows) {
+    .then((postWasCreated) => {
+        if(postWasCreated) {
             req.flash('success', "Your post was created successfully!");
             req.session.save((err) => {
                 res.redirect('/');
@@ -71,24 +69,17 @@ router.get('/search', (req, res, next) => {
             results: []
         });
     } else {
-        let baseSQL = 
-        `
-        SELECT id, title, description, thumbnail, concat_ws(' ', title, description) AS haystack
-        FROM posts
-        HAVING haystack like ?;
-        `
-        let sqlReadySearchTerm = "%" + searchTerm + "%";
-        db.execute(baseSQL, [sqlReadySearchTerm])
-        .then(([results, fields]) => {
-            if(results && results.length) {
+        PostModel.search(searchTerm)
+        .then((results) => {
+            if(results.length) {
                 res.send({
                     resultsStatus: "info",
                     message: `${results.length} results found.`,
                     results: results
                 });
             } else {
-                db.query('SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT 8;', [])
-                .then(([results, fields]) => {
+                PostModel.getNRecentPosts(8)
+                .then((results) => {
                     res.send({
                         resultsStatus: "info",
                         message: "No results were found for your search, but here are the 8 most recent posts!",
