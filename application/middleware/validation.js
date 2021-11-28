@@ -100,6 +100,11 @@ const postValidator = (req, res, next) => {
         req.session.save(err => {
             res.redirect('/postimage');
         }); 
+    } else if(title.length > 50) {
+        req.flash('error', `Title Length can only contain 50 characters. You have ${title.length - 50} characters too many.`);
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
     } else if(description.length == 0) {
         req.flash('error', 'No Description was given!');
         req.session.save(err => {
