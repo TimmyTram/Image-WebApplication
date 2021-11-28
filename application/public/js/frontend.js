@@ -162,13 +162,17 @@ function buildPaginator(state) {
                 mainContent.innerHTML = state.content[state.content.length - 1];
                 state.page = state.content.length - 1;
                 specificPageNumber.innerText = state.page + 1;
+            } else {
+                mainContent.innerHTML = state.content[state.content.length - 2];
+                state.page = state.content.length - 2;
+                specificPageNumber.innerText = state.page + 1;
             }
         }
     }
     
     nextButton.onclick = (event) => {
         if(event.target.id === 'next-button') {
-            if(state.page < state.content.length - 1 && state.content[state.content.length - 1] !== "") {
+            if(state.page < state.content.length - 1 && state.content[state.page + 1] !== "") {
                 console.log(state.content);
                 mainContent.innerHTML = state.content[++state.page];
                 specificPageNumber.innerText = state.page + 1;
