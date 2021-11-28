@@ -53,7 +53,12 @@
             <div class="comment-text">${data.comment}</div>
         </div>
         `;
-        document.getElementById('messages').firstElementChild.before(template.content.firstElementChild);
+        try{
+            document.getElementById('messages').firstElementChild.before(template.content.firstElementChild);
+        } catch(error) {
+            console.log(error);
+            window.location.reload(); // sometimes before is getting an error so we'll just force a refresh to mimic what we want.
+        }
     }
 
     document.getElementById('submit-button').onclick = (event) => {
@@ -80,7 +85,7 @@
             if(data.code == 1) {
                 addMessage(data);
             } else {
-                addFlashFromFrontEnd(data.message);
+                addFlashFromFrontEnd(data.message, data.status);
             }
         })
         .catch((err) => console.log(err));

@@ -34,13 +34,20 @@ function setFlashMessageFadeOut(flashMessageElement) {
     }, 4000);
 }
 
-function addFlashFromFrontEnd(message) {
+function addFlashFromFrontEnd(message, status) {
+    let fontAwesomeIcon = 'fas fa-check-circle'
+    let flashAttribute = 'flash-success';
+    if(status == "danger") {
+        fontAwesomeIcon = 'fas fa-exclamation-triangle';
+        flashAttribute = 'flash-error';
+    }
+    
     let flashMessageDiv = document.createElement('div');
     let innerFlashDiv = document.createElement('div');
     let innerI = document.createElement('i');
     let innerSpan = document.createElement('span');
     let outerI = document.createElement('i');
-    outerI.setAttribute('class', 'fas fa-check-circle');
+    outerI.setAttribute('class', fontAwesomeIcon);
     let innerTextNode = document.createTextNode(" " + message + " ");
     innerSpan.appendChild(innerTextNode);
     innerSpan.appendChild(outerI);
@@ -48,8 +55,8 @@ function addFlashFromFrontEnd(message) {
     innerFlashDiv.appendChild(innerI);
     flashMessageDiv.appendChild(innerFlashDiv);
     flashMessageDiv.setAttribute('id', 'flash-message');
-    innerFlashDiv.setAttribute('id', 'flash-success');
-    innerI.setAttribute('class', 'fas fa-check-circle');
+    innerFlashDiv.setAttribute('id', flashAttribute);
+    innerI.setAttribute('class', fontAwesomeIcon);
     document.getElementsByTagName('body')[0].appendChild(flashMessageDiv);
     setFlashMessageFadeOut(flashMessageDiv);
 }
