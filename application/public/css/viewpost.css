@@ -50,6 +50,7 @@ body {
 
 #comment-section-container {
     display: grid;
+    background: linear-gradient(90deg, #28282f, #444245, #3c3856);
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-auto-rows: 1fr;
@@ -112,6 +113,54 @@ body {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+}
+
+#messages {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    max-height: 18vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+div[id^=message-] {
+    display: grid;
+    grid-template-rows: .3fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .2rem;
+    padding: .25rem;
+    margin: .2rem;
+    font-size: 1rem;
+    border: 3px solid #242c7e;
+    border-radius: .25rem;
+    background-color: #b099fc;
+    grid-template-areas:
+    "author created"
+    "comment comment";
+}
+
+.author-text {
+    grid-area: author;
+    justify-self: start;
+    background: -webkit-linear-gradient(#3c5fe1, #4d65d0, #0f1923);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.comment-text {
+    grid-area: comment;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 75px;
+    min-height: 75px;
+}
+
+.date-posted {
+    grid-area: created;
+    justify-self: end;
 }
 
 #info-message-grid {
