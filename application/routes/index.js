@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/routeprotecter').userIsLoggedIn;
-var {getRecentPosts, getPostById} = require('../middleware/postsmiddleware');
+var {getRecentPosts, getPostById, getCommentsByPostId} = require('../middleware/postsmiddleware');
 
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {
@@ -25,7 +25,7 @@ router.get('/viewpost', (req, res, next) => {
   res.render('viewpost', {title : 'View Posts', css: ['viewpost.css']});
 });
 
-router.get('/post/:id(\\d+)', getPostById, (req, res, next) => {
+router.get('/post/:id(\\d+)', getPostById, getCommentsByPostId, (req, res, next) => {
   res.render('viewpost', {title: `Post ${req.params.id}`, css : ['viewpost.css']});
 });
 
