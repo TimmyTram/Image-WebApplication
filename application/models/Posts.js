@@ -25,16 +25,9 @@ PostModel.search = (searchTerm) => {
         .catch((err) => Promise.reject(err));
 }
 
-PostModel.getNRecentPosts = (numberOfPost) => { // ? causes some weird mysql error
-    /*
-    code: 'ER_WRONG_ARGUMENTS',
-    errno: 1210,
-    sql: 'SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT ?',
-    sqlState: 'HY000',
-    sqlMessage: 'Incorrect arguments to mysqld_stmt_execute'
-    */
-    let baseSQL = "SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT 8";
-    return db.execute(baseSQL, [numberOfPost])
+PostModel.getNRecentPosts = (numberOfPost) => {
+    let baseSQL = "SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT ?";
+    return db.execute(baseSQL, [numberOfPost.toString()])
     .then(([results, fields]) => {
         return Promise.resolve(results);
     })

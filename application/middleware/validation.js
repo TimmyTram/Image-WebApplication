@@ -89,7 +89,9 @@ const postValidator = (req, res, next) => {
     let title = req.body.title;
     let description = req.body.description;
     let fk_userId = req.session.userId;
-    
+    const max_title_length = 50;
+    const max_description_length = 10000; 
+
     if(fileUploaded.length == 0) {
        req.flash('error', 'No File was Uploaded!');
        req.session.save(err => {
@@ -100,13 +102,18 @@ const postValidator = (req, res, next) => {
         req.session.save(err => {
             res.redirect('/postimage');
         }); 
-    } else if(title.length > 50) {
-        req.flash('error', `Title Length can only contain 50 characters. You have ${title.length - 50} characters too many.`);
+    } else if(title.length > max_title_length) {
+        req.flash('error', `Title Length can only contain ${max_title_length} characters. You have ${title.length - max_title_length} characters too many.`);
         req.session.save(err => {
             res.redirect('/postimage');
         }); 
     } else if(description.length == 0) {
         req.flash('error', 'No Description was given!');
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
+    } else if(description.length > max_description_length) {
+        req.flash('error', `Description can only contain ${max_description_length} characters. You have ${description.length - max_description_length} characters too many.`);
         req.session.save(err => {
             res.redirect('/postimage');
         }); 

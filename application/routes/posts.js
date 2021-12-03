@@ -78,11 +78,12 @@ router.get('/search', (req, res, next) => {
                     results: results
                 });
             } else {
-                PostModel.getNRecentPosts(8)
+                let recentShow = 8;
+                PostModel.getNRecentPosts(recentShow)
                 .then((results) => {
                     res.send({
                         resultsStatus: "info",
-                        message: "No results were found for your search, but here are the 8 most recent posts!",
+                        message: `No results were found for your search, but here are the ${recentShow} most recent posts!`,
                         results: results
                     });
                 })
