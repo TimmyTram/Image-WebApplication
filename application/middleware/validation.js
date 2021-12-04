@@ -36,7 +36,9 @@ const registerValidator = (req, res, next) => {
     let password = req.body.password;
     let cpassword = req.body.cpassword;
     let email = req.body.email;
-
+    let ageVerification = req.body.ageVerification
+    let agreeToTOS = req.body.agreeToTOS;
+    
     if(!checkUsername(username)) {
         req.flash('error', 'Invalid Username!');
         req.session.save(err => {
@@ -54,6 +56,16 @@ const registerValidator = (req, res, next) => {
         });
     } else if(password != cpassword) { // gotta check passwords or else user can accidentially create account with password mismatch
         req.flash('error', 'Invalid: Passwords do not match!');
+        req.session.save(err => {
+            res.redirect('/registration');
+        });
+    } else if(ageVerification !== 'on') {
+        req.flash('error', 'Invalid Age!');
+        req.session.save(err => {
+            res.redirect('/registration');
+        });
+    } else if(agreeToTOS !== 'on') {
+        req.flash('error', 'Invalid: You did not agree to the TOS!');
         req.session.save(err => {
             res.redirect('/registration');
         });
@@ -90,7 +102,8 @@ const postValidator = (req, res, next) => {
     let description = req.body.description;
     let fk_userId = req.session.userId;
     const max_title_length = 50;
-    const max_description_length = 10000; 
+    const max_description_length = 10000;
+    let acceptableUsePolicy = req.body.acceptableUsePolicy; 
 
     if(fileUploaded.length == 0) {
        req.flash('error', 'No File was Uploaded!');
@@ -119,6 +132,11 @@ const postValidator = (req, res, next) => {
         }); 
     } else if(typeof fk_userId === 'undefined') {
         req.flash('error', 'User does not exist!');
+        req.session.save(err => {
+            res.redirect('/postimage');
+        }); 
+    } else if(acceptableUsePolicy !== 'on') {
+        req.flash('error', 'Invalid: You did not agree to the Acceptable Use Policy!');
         req.session.save(err => {
             res.redirect('/postimage');
         }); 
