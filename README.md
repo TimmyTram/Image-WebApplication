@@ -34,3 +34,7 @@ Please follow the instructions below and fill in the information requested when 
 3. User Passwords are encrypted using bcrypt.
 4. Logged in users are stayed logged in as they navigate throughout the website until they logout.
 5. Image Post information are stored in the application's database.
+
+## Additional Notes
+1. The CSS might look weird on your screen. Sorry, my monitor size is a bit weird and was developing all the CSS in terms of my dimensions!
+2. In my experimental branch there is multiple database dumps and instructions on how to import all the images I used within my demo video, however this is probably not necessary at all since this branch should be the one being graded.
