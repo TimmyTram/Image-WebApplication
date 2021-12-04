@@ -22,6 +22,7 @@ Please follow the instructions below and fill in the information requested when 
 ## Build Instructions
 1. npm install
 2. npm run builddb
+3. Use csc317db_DATA_ONLY.sql and run in workbench in order to get all the data shown in my video into your database
 
 ## Run Instructions
 1. npm start
@@ -34,3 +35,6 @@ Please follow the instructions below and fill in the information requested when 
 3. User Passwords are encrypted using bcrypt.
 4. Logged in users are stayed logged in as they navigate throughout the website until they logout.
 5. Image Post information are stored in the application's database.
+
+## Additional Notes
+1. The CSS might look weird on your screen. Sorry, my monitor size is a bit weird and was developing all the CSS in terms of my dimensions!
