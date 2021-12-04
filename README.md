@@ -26,3 +26,10 @@ Please follow the instructions below and fill in the information requested when 
 ## Run Instructions
 1. npm start
 2. steps here 
+
+## Extra Credit
+1. Server side validation for inputs in registration form, login form, post form, as well as comments. <-- From term project guidelines for non-functional requirements.
+2. Basic paginator to go through all posts related to a search term. <-- Not listed, but I heard from a video that I can do this.
+3. User Passwords are encrypted using bcrypt. <-- From term project guidelines for non-functional requirements.
+4. Logged in users are stayed logged in as they navigate throughout the website until they logout. <-- From term project guidelines for non-functional requirements.
+5. Image Post information are stored in the application's database. <-- From term project guidelines for non-functional requirements.
