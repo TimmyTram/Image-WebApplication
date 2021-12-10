@@ -37,4 +37,5 @@ Please follow the instructions below and fill in the information requested when 
 
 ## Additional Notes
 1. The CSS might look weird on your screen. Sorry, my monitor size is a bit weird and was developing all the CSS in terms of my dimensions!
-2. In my experimental branch there is multiple database dumps and instructions on how to import all the images I used within my demo video, however this is probably not necessary at all since this branch should be the one being graded.
+2. The only database dump in the main branch is STRUCTURE ONLY and the uploads folder is empty.
+3. In my experimental branch there is multiple database dumps as well and instructions on how to import all the images I used within my demo video, however this is probably not necessary at all since this branch should be the one being graded.
